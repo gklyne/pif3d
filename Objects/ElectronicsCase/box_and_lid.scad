@@ -8,7 +8,6 @@ module box(l, w, h, t)
       cube( size=[l-t2, w-t2, h-t]) ;
   }
 }
-
 module lid(l, w, t)
 {
   t2 = t * 2;
@@ -25,7 +24,6 @@ module lid(l, w, t)
       cube( size=[l-t4, w-t4, t2] );
   }
 }
-
 module support(dl, dw, h, od, id)
 {
 	// TBD: PCB support posts
@@ -42,9 +40,7 @@ w = 20;		// Width
 h = 10;		// Height
 t = 1;		// Wall thickness
 s = 5;		// Spacing
-
 translate([s,0,0])
   box(l, w, h, t);
-
 translate([-s-l, 0, 0])
   lid(l, w, t);
