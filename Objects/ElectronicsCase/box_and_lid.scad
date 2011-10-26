@@ -26,8 +26,14 @@ module lid(l, w, t)
   }
 }
 
-module support(dl, dw, h)
+module support(dl, dw, h, od, id)
 {
+	// TBD: PCB support posts
+}
+
+module case()
+{
+	// TBD: case with PCB and lid attachment supports
 }
 
 // Try it out
