@@ -1,3 +1,9 @@
+// This version of the box and lid design is specialized as a case for
+// the Nanode circuit board.
+//
+// @@TODO include generic stuff by reference rather than value as now
+//
+
 delta = 0.1;
 spacing = 5;
 
