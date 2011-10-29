@@ -1,7 +1,7 @@
 module mycube()
 {
-  translate([-2,0,0])
-    cube( size=[4,2,1] );
+  translate([-20,0,0])
+    cube(size = [40,20,10]);
 }
 
 union()
@@ -10,4 +10,3 @@ union()
   rotate([0,-90,0])
     mycube();
 }
-
