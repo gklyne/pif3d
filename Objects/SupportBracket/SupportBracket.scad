@@ -59,17 +59,26 @@ module chamferYint(p, l, w, q, d)
 }
 
 
-
-module bracket(lo, wo, ho, li, hi, le, hd, d)
+// lo = length overall
+// wo = width overall
+// ho = height overall
+// li = length of internal space
+// hi = height of internal space
+// he = height of end lip
+// le = end lip length
+// hd = screw hole diameter
+// d  = delta for CSG
+//
+module bracket(lo, wo, ho, li, hi, le, he, hd, d)
 {
-  co = ho - 2*hi -1 ;
+  co = ho - hi - he -1 ;
   difference()
   {
     cube(size=[lo, wo, ho]);
-      translate([lo-li-le,-d,ho-hi]) cube([lo,wo+2*d,hi+d]);
-      translate([lo-li-le-hi,-d,ho-hi*2]) cube([li,wo+2*d,hi+d]);
-      chamferYint([lo-le-hi,0,ho-hi*2], wo, hi, 0, d);
-      chamferYint([lo-li-le-hi,0,ho-hi], wo, hi, 3, d);
+      translate([lo-li-le,-d,ho-hi]) cube([lo,wo+2*d,hi+d]);       // gap
+      translate([lo-li-le-hi,-d,ho-hi-he]) cube([li,wo+2*d,hi+d]); // int
+      chamferYint([lo-le-hi,0,ho-hi-he], wo, hi, 0, d);
+      chamferYint([lo-li-le-hi,0,ho-he], wo, hi, 3, d);
       chamferX([0,0,0], lo, co, 0, d);
       chamferX([0,wo,0], lo, co, 1, d);
       chamferY([0,0,0], lo, co+hi*0.5, 0, d);
@@ -89,16 +98,24 @@ module bracket(lo, wo, ho, li, hi, le, hd, d)
 
 //chamferYint([10,20,0], -30, 5, 3, 0.5);
 
-lenoverall  = 70;
+lenoverall  = 72;
 widoverall  = 25;
 hgtoverall  = 15;
 leninternal = 40;
-hgtinternal = 5;
-lenextra    = 5;
+hgtinternal = 7;
+lenend      = 5;
+hgtend      = 3;
 holedia     = 4;
 
 translate([-lenoverall/2, 5, 0])
-  bracket(lenoverall, widoverall, hgtoverall, leninternal, hgtinternal, lenextra, holedia, 0.1);
+  bracket(lenoverall, widoverall, hgtoverall, 
+          leninternal, hgtinternal, 
+          lenend, hgtend, 
+          holedia, 0.1);
+
 translate([-lenoverall/2, -widoverall-5, 0])
-  bracket(lenoverall, widoverall, hgtoverall, leninternal, hgtinternal, lenextra, holedia, 0.1);
+  bracket(lenoverall, widoverall, hgtoverall, 
+          leninternal, hgtinternal, 
+          lenend, hgtend, 
+          holedia, 0.1);
 
