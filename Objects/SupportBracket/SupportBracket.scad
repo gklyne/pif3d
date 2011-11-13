@@ -83,6 +83,7 @@ module bracket(lo, wo, ho, li, hi, le, he, hd, d)
       chamferX([0,wo,0], lo, co, 1, d);
       chamferY([0,0,0], lo, co+hi*0.5, 0, d);
       chamferY([lo,0,0], wo, co+hi, 1, d);
+      chamferYint([lo-hi,0,co], wo, co+hi, 3.3, d);
       translate([wo/2,wo/2,-d]) cylinder(r=hd/2, h=ho+d*2, $fa=30, $fs=0.25);
       translate([wo/2,wo/2,-d]) cylinder(r1=hd+d, r2=0, h=hd+d, $fs=0.25);
   }
