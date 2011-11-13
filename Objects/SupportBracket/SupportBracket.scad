@@ -96,5 +96,9 @@ leninternal = 40;
 hgtinternal = 5;
 lenextra    = 5;
 holedia     = 4;
-bracket(lenoverall, widoverall, hgtoverall, leninternal, hgtinternal, lenextra, holedia, 0.1);
+
+translate([-lenoverall/2, 5, 0])
+  bracket(lenoverall, widoverall, hgtoverall, leninternal, hgtinternal, lenextra, holedia, 0.1);
+translate([-lenoverall/2, -widoverall-5, 0])
+  bracket(lenoverall, widoverall, hgtoverall, leninternal, hgtinternal, lenextra, holedia, 0.1);
 
