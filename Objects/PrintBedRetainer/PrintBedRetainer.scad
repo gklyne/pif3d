@@ -10,7 +10,7 @@ module PrintBedRetainer(od, id, rt, ho, bh, ll, lt, d)
 {
 	s30 = sin(30);
     c30 = cos(30);
-    lfr = (od-lt)/2;		// Lever fillet radius		
+    lfr = od/2-lt;		// Lever fillet radius		
     lfp = od/2+lfr;		// Lever fillet pitch radius
     intersection()
     {
@@ -43,14 +43,14 @@ module PrintBedRetainer(od, id, rt, ho, bh, ll, lt, d)
 
 // Actual objects here
 
-ll = 15;
+ll = 12;
 for (xo = [-ll, ll])
 {
 	for ( yo = [-ll, ll])
 	{
 		translate([xo, yo, 0])
-             //              od id 
-			PrintBedRetainer(15, 4, 4, 1, 1, ll, 4, 1);
+             //              od  id rt ho   bh ll  lt d
+			PrintBedRetainer(14, 4, 4, 1.5, 1, ll, 3, 1);
 	}
 }
 
