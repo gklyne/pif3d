@@ -4,6 +4,7 @@
 // ho = hole offset
 // bh = Bevel height
 // ll = lever length
+// lt = lever thickness (width)
 // d  = delta
 module PrintBedRetainer(od, id, rt, ho, bh, ll, lt, d)
 {
@@ -42,13 +43,14 @@ module PrintBedRetainer(od, id, rt, ho, bh, ll, lt, d)
 
 // Actual objects here
 
-ll = 10;
+ll = 15;
 for (xo = [-ll, ll])
 {
 	for ( yo = [-ll, ll])
 	{
 		translate([xo, yo, 0])
-			PrintBedRetainer(10, 4, 4, 1, 1, ll, 3, 1);
+             //              od id 
+			PrintBedRetainer(15, 4, 4, 1, 1, ll, 4, 1);
 	}
 }
 
