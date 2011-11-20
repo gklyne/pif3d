@@ -21,7 +21,7 @@ module PrintBedRetainer(od, id, rt, ho, bh, ll, lt, d)
 				cylinder(r=od/2, h=rt);
 				translate([0,-od/4,0]) cube(size=[ll, od/2, rt]);
 			}
-			translate([ho,0,-d]) cylinder(r=id/2, h=rt+2*d);
+			translate([ho,0,-d]) cylinder(r=id/2, h=rt+2*d, $fn=12);
 			translate([c30*lfp,-s30*lfp,-d])
 			{	
 				cylinder(r=lfr, h=rt+2*d);
