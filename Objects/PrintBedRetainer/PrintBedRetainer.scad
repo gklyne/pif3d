@@ -34,8 +34,8 @@ module PrintBedRetainer(od, id, rt, ho, bh, ll, lt, d)
     		}
 		union()
         {
-			cylinder(r1=od/2-bh*2, r2=od/2, h=bh);
-        		translate([0,0,bh]) cylinder(r=ll+d, h=rt);
+			translate([0,0,rt-bh]) cylinder(r1=od/2, r2=od/2-bh*2, h=bh);
+        		translate([0,0,-bh]) cylinder(r=ll+d, h=rt);
       	}
 	}
 }
