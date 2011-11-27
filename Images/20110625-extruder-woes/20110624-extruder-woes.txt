@@ -1,0 +1,3 @@
+Pictures showing the original extruder hot end has disintegrated.  The breakage happened while attempting to print (resulting in "smoke trail" of plastic), and appears to have been caused by the PTFE breaking under the internal pressure of hot plastic created by the extruder feed.  Just before this breakage happened, I had re-hobbed the extruder drive bolt, apparently making in somewhat more effective.
+
+There are also a series of pictures of the "J-head" hot end that I sourced from thingfarm as mendel-parts still seem to be in a state of disarray.
