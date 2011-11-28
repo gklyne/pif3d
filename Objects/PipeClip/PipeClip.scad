@@ -45,18 +45,21 @@ module PipeClip(l, w, h, pd, pg, shd, ssd, d)
                 translate([-l,0,0]) 
                     cube(size=[l,w+2*d,h+w]);
     }
-
-
 }
 
 l = 15;
 w = 8;
-p =l+w;
-for (xo = [-p,0, +p])
+p = l+w;
+xn   = 3;
+yn   = 1;
+xlim = (xn-1)/2;
+ylim = (yn-1)/2;
+
+for (xo = [-xlim:xlim])
 {
-    for (yo = [-p,0, +p])
+    for (yo = [-ylim:ylim])
     {
-        translate([xo,yo,0])
+        translate([xo*p,yo*p,0])
             PipeClip(l, w, 10, 7, 6, 6, 3, 1);
     }
 }
