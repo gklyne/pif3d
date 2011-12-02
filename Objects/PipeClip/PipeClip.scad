@@ -60,7 +60,7 @@ for (xo = [-xlim:xlim])
     for (yo = [-ylim:ylim])
     {
         translate([xo*p,yo*p,0])
-            PipeClip(l, w, 10, 7, 6, 6, 3, 1);
+            PipeClip(l, w, 8, 5.75, 4.75, 6, 3, 1);
     }
 }
 
