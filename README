@@ -1,0 +1,10 @@
+This repository is intended to contain files associated with the
+PayItForward 3D printing project.
+
+Possible files reposing here may include, without limitation:
+- scripts for preparing 3D printing darta files
+- 3D models of objects
+- parameters for various printing devices and materials
+- parametric sub-components for 3D object models
+- documents (but see also the wiki)
+
