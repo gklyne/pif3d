@@ -46,11 +46,11 @@ module PrintBedRetainer(od, id, rt, ho, bh, ll, lt, d)
 ll = 14;
 for (xo = [-ll, ll])
 {
-	for ( yo = [-ll, ll])
-	{
-		translate([xo, yo, 0])
-             //              od  id rt ho   bh ll  lt d
-			PrintBedRetainer(13, 4, 4, 1.5, 1, ll, 3, 1);
+    for ( yo = [-ll, ll])
+    {
+        translate([xo, yo, 0])
+        //               od  id rt ho   bh ll  lt d
+        PrintBedRetainer(14, 4, 4, 1.5, 1, ll, 3, 1);
 	}
 }
 
