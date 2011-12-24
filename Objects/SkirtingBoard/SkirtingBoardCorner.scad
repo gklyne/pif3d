@@ -1,3 +1,9 @@
+// Delta overlap to avoidf coincident surface
+delta = 0.01;
+
+// h = height of skirting
+// t = thickness of skirting
+// l = overall length of skirting
 module skirting(h, t, l)
 {
     cylr = 1.2*t;
@@ -14,37 +20,49 @@ module skirting(h, t, l)
         }
 }
 
-
-//union()
-//{
-//   translate([-200,-15,0]) skirting(100, 15, 200);
-//   rotate([0,0,90]) translate([   0,-15,0]) skirting(100, 15, 200);
-//}
-
-delta = 0.01;
-
-union()
+// h = height of skirting
+// t = thickness of skirting
+// l = overall length of skirting
+// e = end with profile: -1 = left, +1 = right
+module skirtingEnd(h, t, l, e)
 {
-    translate([-100+delta,0,0])
+    difference()
     {
-        difference()
-        {
-            skirting(100, 15, 200);
-            translate([-100,0,0]) rotate([0,0,90]) skirting(100, 15, 200);
-        }
-    }
-    rotate([0,0,90]) translate([100-delta,0,0])
-    {
-            difference()
-            {
-                skirting(100, 15, 200);
-                translate([100,0,0]) rotate([0,0,-90]) skirting(100, 15, 200);
-            }
-    }
-    intersection()
-    {
-        translate([-100+15,0,0]) skirting(100, 15, 200);
-        rotate([0,0,90]) translate([-100,0,0]) skirting(100, 15, 200);
+        skirting(h, t, l);
+        translate([e*l/2,0,0]) rotate([0,0,-90*e]) skirting(h, t, 3*t);
     }
 }
+
+//skirtingEnd(100,15,200,1);
+
+// h  = height of skirting
+// t  = thickness of skirting
+// l1 = length (cornert to wall) of left leg
+// l1 = length (cornert to wall) of right leg
+module skirtingLShape(h, t, l1, l2)
+{
+    union()
+    {
+        // Left leg
+        translate([-l1/2+delta,0,0])
+        {
+            skirtingEnd(h, t, l1, -1);
+        }
+        // Right leg
+        rotate([0,0,90]) translate([l2/2-delta,0,0])
+        {
+            skirtingEnd(h, t, l2, +1);
+        }
+        // Corner
+        intersection()
+        {
+            skirting(h, t, l1+l2);
+            rotate([0,0,90]) skirting(100, 15, 200);
+        }
+    }
+}
+
+skirtingLShape(100, 15, 20, 60);
+
+//skirtingEnd(100,15,20,-1);
 
