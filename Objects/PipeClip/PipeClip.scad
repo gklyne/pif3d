@@ -1,19 +1,4 @@
-// od = overall diameter (for screw head)
-// oh = overall height (screw + head +recesss)
-// sd = screw diameter
-// sh = screw height (to top of countersink)
-module countersink(od, oh, sd, sh, d)
-{
-    union()
-    {
-        intersection()
-	    {
-            translate([0,0,-sh-d]) cylinder(r=od/2, h=oh+2*d, $fn=12);
-            translate([0,0,-od/2]) cylinder(r1=0, r2=oh+od/2, h=oh+od/2, $fn=12);
-        }
-    translate([0,0,-sh]) cylinder(r=sd/2, h=sh, $fn=12);
-    }
-}
+use <../ShapeLibrary/CounterSink.scad>
 
 // l   = length of clip
 // w   = width (depth) of clip
@@ -36,7 +21,7 @@ module PipeClip(l, w, h, pd, pg, shd, ssd, d)
             rotate([-90,0,0]) 
                 cylinder(r=pd/2, h=w+2*d);
         translate([0,w/2,h-(pd+pg)/2]) 
-            countersink(shd, h, ssd, h-(pd+pg)/2+d, d);
+            countersinkZ(shd, h+2*d, ssd, h+d-(pd+pg)/2);
         translate([l/2,-d,0]) 
             rotate([0,-15,0]) 
                 cube(size=[l,w+2*d,h+w]);
