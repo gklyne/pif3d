@@ -1,4 +1,4 @@
-delta = 0.01;
+delta = 0.5;
 
 module RoundedEnd(l,r,h)
 {
@@ -36,6 +36,7 @@ module ElectronicsBracket(length1, length2, holedia, offset, thickness,
     {
         union()
         {
+            // Arm segment that hangs on top rail
             rotate(asin(offset/length1), [0,0,-1])
             {
                 translate([-length1,0,0])
@@ -43,10 +44,15 @@ module ElectronicsBracket(length1, length2, holedia, offset, thickness,
                     difference()
                     {
                         TaperedRoundedEnds(length1, holedia, thickness);
-                        translate([-delta,0,0]) cylinder(r=holedia/2,h=thickness+2*delta);
+                        translate([0,0,-delta]) cylinder(r=holedia/2,h=thickness+2*delta);
+                        // Cut-out for in situ clip-on attachment
+                        rotate([0,0,-18])
+                            translate([0,-(holedia-delta)/2,-delta])
+                                cube([length1, holedia-delta, thickness+2*delta]);                        
                     }
                 }
             }
+            // Arm segment for attaching mounting plate
             translate([0,-holedia/2,0])
             {
                 rotate(asin(holedia/2/length2),[0,0,1])
@@ -55,9 +61,10 @@ module ElectronicsBracket(length1, length2, holedia, offset, thickness,
                 }
             }
         }
+        // Mounting holes
         for (x = mountholes)
         {
-            # translate([x,delta,thickness/2]) 
+            translate([x,delta,thickness/2]) 
                 rotate([90,0,0]) 
                     cylinder(r=mountholedia/2,h=holedia*2);
         }
@@ -66,9 +73,6 @@ module ElectronicsBracket(length1, length2, holedia, offset, thickness,
 
 for (y = [-20,20])
 {
-    translate([0,y,0]) ElectronicsBracket(50, 38, 8, 9, 10, [5,15,25,35], 3);
+    translate([0,y,0]) ElectronicsBracket(40, 78, 8, 9, 10, [5,15,25,35,45,55,65,75], 3);
 }
-
-
-
 
