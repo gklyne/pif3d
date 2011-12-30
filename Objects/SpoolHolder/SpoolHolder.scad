@@ -24,7 +24,7 @@ module threespokes(od, et, t)
 module SpoolHolder(rd, rt, hd, ht, ad, at)
 {
     d  = 1;
-    t  = 2;
+    t  = 2.2;  // thickness of hub tube
     bh = 0.5;  // height of retaining bump
     bt = 4;    // thickness of retaining bump
     b2 = bh*2;
@@ -59,17 +59,24 @@ module SpoolHolder(rd, rt, hd, ht, ad, at)
 
 module SpoolSpacer(ad,l)
 {
-    tube(ad+4, ad, l);
+    t = 2;
+    tube(ad+2*t, ad, l);
+    // Add lumps to help hold tube when drilling out to clean hole
+    translate([-((ad+t)/2)-1.5*t,-t/2,0]) cube([1.5*t,t,t]);
+    translate([((ad+t)/2),-t/2,0]) cube([1.5*t,t,t]);
 }
 
+
+axledia = 8+0.25;
 
 for (x = [-25,25])
 {
     translate([x,0,0])
     {
-        SpoolHolder(38+8, 3, 38, 10, 8, 5);
-        translate([0,35,0]) SpoolSpacer(8, 10) ;
-        translate([0,-35,0]) SpoolSpacer(8, 4) ;
+        SpoolHolder(38+6, 3, 38, 10, axledia, 5);
+        translate([0,30,0]) SpoolSpacer(axledia, 15) ;
+        translate([0,50,0]) SpoolSpacer(axledia, 15) ;
+        translate([0,-30,0]) SpoolSpacer(axledia, 6) ;
     }
 }
 
