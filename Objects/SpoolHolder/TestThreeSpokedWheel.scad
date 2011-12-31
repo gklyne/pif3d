@@ -20,10 +20,11 @@ module threespokes(od, et, t)
     }
 }
 
+t  = 2.5;    // thickness of hub tube
+
 module TestThreeSpokedWheel(rd, rt, hd, ht, ad, at)
 {
     d  = 1;
-    t  = 2.5;    // thickness of hub tube
     
     difference()
     {
@@ -40,4 +41,7 @@ module TestThreeSpokedWheel(rd, rt, hd, ht, ad, at)
 axledia = 8+0.25;
 
 TestThreeSpokedWheel(38+6, 3, 38, 3, axledia, 3);
+
+// Just the rim:
+translate([45,0,0]) tube(38,38-2*t,3);
 
