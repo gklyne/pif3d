@@ -1,10 +1,29 @@
-use <SpoolHolder.scad>
+module tube(od, id, l)
+{
+    d = 1;
+    difference()
+    {
+        cylinder(r=od/2, h=l);
+        translate([0,0,-d]) cylinder(r=id/2, h=l+2*d);
+    }
+}
 
-// Test possible Skeinforge problem
+module threespokes(od, et, t)
+{
+    d = 1;
+    difference()
+    {
+        cylinder(r=od/2, h=t);
+        for (a=[0,120,240])
+            translate([od*cos(a),od*sin(a),-d])
+                cylinder(r=0.5*(sqrt(3)*od-et), h=t+d*2);
+    }
+}
+
 module TestThreeSpokedWheel(rd, rt, hd, ht, ad, at)
 {
     d  = 1;
-    t  = 2.4;    // thickness of hub tube
+    t  = 2.5;    // thickness of hub tube
     
     difference()
     {
