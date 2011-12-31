@@ -4,10 +4,7 @@ use <SpoolHolder.scad>
 module TestThreeSpokedWheel(rd, rt, hd, ht, ad, at)
 {
     d  = 1;
-    t  = 2.6;    // thickness of hub tube
-    bh = 0.5;  // height of retaining bump
-    bt = 4;    // thickness of retaining bump
-    b2 = bh*2;
+    t  = 2.4;    // thickness of hub tube
     
     difference()
     {
