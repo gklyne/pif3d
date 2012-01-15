@@ -45,7 +45,7 @@ for (xo = [-ll, ll])
     {
         translate([xo, yo, 0])
         //               od1 od2 id rt  ho   ll  lt d
-        PrintBedRetainer(13,  11, 4, 6, 0.5*sign(yo), ll, 3, 1);
+        PrintBedRetainer(13,  11, 4, 6, 0.75*sign(yo), ll, 3, 1);
     }
 }
 
