@@ -1,7 +1,7 @@
 // Base teardrop shape, one end centred on origin, extending for given distance
-// (positive or negative) along the X axis.
+// (positive or negative) along the Z axis.
 //
-// l = length of shape (negative extends in -x direction)
+// l = length of shape (negative extends in -z direction)
 // d = diametar of hole
 // q = quadrant orientation of point: 
 //       0 => +x
@@ -40,7 +40,7 @@ module TeardropX(l,d,q)
 //
 // Use for making horizontal holes in objects.
 //
-// l = length of shape (negative extends in -x direction)
+// l = length of shape (negative extends in -y direction)
 // d = diametar of hole
 // q = quadrant orientation of point: 
 //       0 => +z
