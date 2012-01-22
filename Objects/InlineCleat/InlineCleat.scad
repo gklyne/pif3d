@@ -1,20 +1,20 @@
 // Inline cleat for tying off cord-ends.
 
-l1 = 100; // Overall length
-l2 = 25;  // Offset to centre of cleat
+l1 = 80; // Overall length
+l2 = 24;  // Offset to centre of cleat
 l3 = 40;  // Overall width of cleat
 l4 = 10;  // Width of cleat neck
-l5 = 20;  // Distance between buckle holes
+l5 = 12;  // Distance between buckle holes
 
-d  = 4;    // Diameter of cord clearance hole
+d  = 5;    // Diameter of cord clearance hole
 
-h1 = 11;  // Overall height of cleat
-h2 = 3;   // Height of base
-h3 = 3;   // Height of cleat neck
-h4 = 5;   // Height of cleat jaw
-h5 = 10;  // Overall height at centre of cleat
+h1 = 13;  // Overall height of cleat
+h2 = 4;   // Height of base
+h3 = 4;   // Height of cleat neck
+h4 = 6;   // Height of cleat jaw
+h5 = 12;  // Overall height at centre of cleat
 
-t = 3;    // Overall thickness
+t = 4;    // Overall thickness
 
 delta = 0.01;
 
