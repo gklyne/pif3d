@@ -1,6 +1,6 @@
 // Inline cleat for tying off cord-ends.
 
-l1 = 80; // Overall length
+l1 = 90;  // Overall length
 l2 = 24;  // Offset to centre of cleat
 l3 = 40;  // Overall width of cleat
 l4 = 10;  // Width of cleat neck
@@ -135,4 +135,7 @@ module InlineCleat()
     translate([l1,0,0]) Buckle(h2+d/2+l5+d/2+h2, h2+d+h2, t, l5, d, or); 
 }
 
-InlineCleat();
+// InlineCleat();
+
+for (i = [0:3])
+    translate([0,i*20,0]) InlineCleat();
