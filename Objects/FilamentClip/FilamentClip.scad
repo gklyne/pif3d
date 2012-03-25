@@ -4,7 +4,7 @@ ol = 40;     // Overall length
 ow = 10;     // Overall width
 oh = 4;      // Overall height
 cr = 3;      // Corner radius
-d1 = 3.5;    // Diameter of filament
+d1 = 3.25;   // Diameter of filament
 d2 = 2.8;    // Diameter of clip entry
 d3 = 20;     // Diameter of finger grip
 d4 = 11;     // Diamater of finger grip hole
@@ -47,17 +47,25 @@ module FilamentJaw(pos,dir,fd,fe,h)
     }
 }
 
-
-difference()
+module FilamentClip()
 {
-    union()
+    difference()
     {
-        RoundedRectPlate(ol, ow, oh, cr );
-        translate([0,ow/2,0]) cylinder(r=d3/2, h=oh);
+        union()
+        {
+            RoundedRectPlate(ol, ow, oh, cr );
+            translate([0,ow/2,0]) cylinder(r=d3/2, h=oh);
+        }
+        CutoutHole(0, ow/2, d4/2, oh);
+        FilamentJaw([ ol/2,0,0], 0, d1, d2, oh);
+        FilamentJaw([-ol/2,0,0], 2, d1, d2, oh);
+        FilamentJaw([ ol/4,-ow/2,0],3,d1,d2,oh);
+        FilamentJaw([-ol/4,-ow/2,0],3,d1,d2,oh);
     }
-    CutoutHole(0, ow/2, d4/2, oh);
-    FilamentJaw([ ol/2,0,0], 0, d1, d2, oh);
-    FilamentJaw([-ol/2,0,0], 2, d1, d2, oh);
-    FilamentJaw([ ol/4,-ow/2,0],3,d1,d2,oh);
-    FilamentJaw([-ol/4,-ow/2,0],3,d1,d2,oh);
+}
+
+yd = ow+d3/2;
+for (yo = [-yd,yd])
+{
+    translate([0,yo,0]) FilamentClip();
 }
