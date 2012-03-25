@@ -1,6 +1,6 @@
 // Filament clip
 
-ol = 30;     // Overall length
+ol = 32;     // Overall length
 ow = 9;     // Overall width
 oh = 4;      // Overall height
 cr = 3;      // Corner radius
