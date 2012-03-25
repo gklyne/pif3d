@@ -4,8 +4,8 @@ ol = 40;     // Overall length
 ow = 10;     // Overall width
 oh = 4;      // Overall height
 cr = 3;      // Corner radius
-d1 = 4;      // Diameter of filament
-d2 = 3;      // Diameter of clip entry
+d1 = 3.5;    // Diameter of filament
+d2 = 2.8;    // Diameter of clip entry
 d3 = 20;     // Diameter of finger grip
 d4 = 11;     // Diamater of finger grip hole
 
