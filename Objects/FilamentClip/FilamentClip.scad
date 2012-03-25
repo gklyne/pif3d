@@ -1,13 +1,13 @@
 // Filament clip
 
-ol = 30;     // Overall length
+ol = 40;     // Overall length
 ow = 10;     // Overall width
 oh = 4;      // Overall height
 cr = 3;      // Corner radius
-d1 = 3;      // Diameter of filament
-d2 = 2.6;    // Diameter of clip entry
+d1 = 4;      // Diameter of filament
+d2 = 3;      // Diameter of clip entry
 d3 = 20;     // Diameter of finger grip
-d4 = 12;     // Diamater of finger grip hole
+d4 = 11;     // Diamater of finger grip hole
 
 module RoundedRectPlate(l, w, h, r)
 {
@@ -41,7 +41,7 @@ module FilamentJaw(pos,dir,fd,fe,h)
     {
         rotate([0,0,dir*90])
         {
-            CutoutHole(-fd/2, 0, fd/2, h);
+            CutoutHole(-fd*0.7, 0, fd/2, h);
             CutoutHole(    0, 0, fe/2, h);
         }
     }
