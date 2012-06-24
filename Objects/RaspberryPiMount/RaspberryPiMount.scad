@@ -159,9 +159,9 @@ module rpimount()
         }
       }
       // Add retaining ridges
-      ridgeX(0, 12,                frameth,       boardht+rpit, 1.5);
-      ridgeX(lenov-12, lenov,      frameth,       boardht+rpit, 1.5);
-      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 1.5);
+      ridgeX(0, 12,                frameth,       boardht+rpit, 1);
+      ridgeX(lenov-12, lenov,      frameth,       boardht+rpit, 1);
+      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, .75);
     }
     // Cutout for power connector (extended to avoid silly stick-up post)
     cutout(0,supth,frameth+powerymin,frameth+powerymax+10,boardht,powerht);
