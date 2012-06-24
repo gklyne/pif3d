@@ -14,10 +14,10 @@ h = 80;      // Height of main hanger
 a = 16;      // Angle between handrail top and side
 t1 = 20;     // Thickness at top of hanger
 t2 = 14;     // Thickness at bottom of hanger
-t3 = 5;      // Thickness of outer frame
-t4 = 3;      // Thickness of frame web
+t3 = 4;      // Thickness of outer frame
+t4 = 2.5;    // Thickness of frame web
 r1 = 10;     // Outer radius of rope eye
-r2 = 4;      // Radius of rope eye hole
+r2 = 5;      // Radius of rope eye hole
 
 p1  = [0,0];
 p2  = [w,0];
@@ -65,10 +65,10 @@ module HangerProfile()
       circle(r=t1);
       translate(p2) circle(r=t1);
       translate([w,-d+t1]) circle(r=t1);
-      translate(p10-[2.5*r2,0]) circle(r=r1);
+      translate(p10-[r1,0]) circle(r=r1);
     }
     polygon([p1,p2,p3,p12,p11]);
-    translate(p10-[2.5*r2,0]) circle(r=r2);
+    translate(p10-[r1,0]) circle(r=r2);
   }
 }
 
