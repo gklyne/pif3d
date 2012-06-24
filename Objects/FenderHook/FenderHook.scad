@@ -37,8 +37,8 @@ p22 = p8 + [t3*cos(a),-t3*sin(a)];
 p23 = p9 + [t3*cos(a)+(t3+0.5*r1)*sin(a),t3+0.5*r1];
 p24 = p10 + [-t3*cos(a)+(t3+0.35*r1)*sin(a),t3+0.35*r1];
 
-p31 = p1 + [-t3*cos(a),t3];
-p32 = p8 + [t3*cos(a),t3*(1-sin(a))];
+p31 = p1 + [t3*(sin(a)-cos(a)),t3];
+p32 = p8 + [t3*(cos(a)+sin(a)),t3*(cos(a)-sin(a))];
 p33 = p7 + [-t3,-t3];
 
 p41 = p1 + [0,t3];
