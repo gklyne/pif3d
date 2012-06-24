@@ -64,30 +64,30 @@ module frame(lo, wo, ho, tw, ts, hs)
   {
     boxsides(lo+tw*2, wo+tw*2, ho, tw+ts);
     translate([tw,tw,hs])
-      cube(size=[rpil,rpiw,ho]);
+      cube(size=[lo,wo,ho]);
   }
 }
 
 // Mounting tab
-module tab(l,w,t,cornerrad,holedia)
+module tab(l,w,t,cornerrad,holedia,xo,yo)
 {
-  difference()
+  rc = ((xo==0) && (yo==0)) ?  0 :
+       ((xo==1) && (yo==0)) ?  1 :
+       ((xo==1) && (yo==1)) ?  2 : 3;
+  rotate([0,0,rc*90])
   {
-    union()
+    difference()
     {
-      translate([cornerrad,0,0]) cube(size=[l-2*cornerrad, w, t]);
-      translate([0,cornerrad,0]) cube(size=[l, w-2*cornerrad, t]);
-      for (xo = [cornerrad,l-cornerrad])
+      union()
       {
-        for (yo = [cornerrad,w-cornerrad])
-        {
-        translate ([xo,yo,0])
+        translate([0,0,0]) cube(size=[l-cornerrad, w, t]);
+        translate([0,0,0]) cube(size=[l, w-cornerrad, t]);
+        translate ([l-cornerrad,w-cornerrad,0])
           cylinder(r=cornerrad, h=t, $fn=16);
-        }
       }
+      translate([l-cornerrad, w-cornerrad, -t/2])
+        cylinder(r=holedia/2, h=t*2, $fn=12);
     }
-    translate([l/2, w/2, -t/2])
-      cylinder(r=holedia/2, h=t*2, $fn=12);
   }
 }
 
@@ -95,15 +95,16 @@ module tab(l,w,t,cornerrad,holedia)
 module cutout(minx, maxx, miny, maxy, baseh, h)
 {
   clearance = 0.5;
+  cutheight = abs(h)+20;;
   if ( h > 0 )
   {
     translate([minx-clearance,miny-clearance,baseh])
-      cube(size=[maxx-minx+2*clearance, maxy-miny+2*clearance, h+clearance]);
+      cube(size=[maxx-minx+2*clearance, maxy-miny+2*clearance, cutheight]);
   }
   else
   {
     translate([minx-clearance,miny-clearance,baseh+h-clearance])
-      cube(size=[maxx-minx+2*clearance, maxy-miny+2*clearance, -h+clearance]);    
+      cube(size=[maxx-minx+2*clearance, maxy-miny+2*clearance, cutheight]);    
   }
 }
 
@@ -123,13 +124,13 @@ module ridgeX(xmin, xmax, y, h, d)
   d2 = d*sqrt(2);
   translate([xmin,y,h])
     rotate([45,0,0])
-      translate([0,-d2/2,-d2/4])
+      translate([0,0,0])
         # cube(size=[xmax-xmin,d2,d2]);
 }
 
 frameth  = 2;     // Thickness of outer frame
-boardht  = 6;     // Height to board
-totalht  = 10;    // Height overall
+boardht  = 7;     // Height to board
+totalht  = 12;    // Height overall
 tabln    = 10;    // Length of corner tab
 tabwd    = 10;    // Width of corner tab
 tabth    = 2;     // Thickness of corner tab
@@ -137,32 +138,33 @@ holedia  = 4;     // Diamater screw hole in tab
 
 module rpimount()
 {
-  lenov = rpil+frameth*2;    // Overall length
-  widov = rpiw+frameth*2;    // Overall width
-  supth = frameth+rpim;      // Thickness of support frame
-  tablo = tabln+supth;       // Screw tab length overall
-  tabwo = tabwd+supth;       // Screw tab width overall
+  clearance = 0.5;
+  lenov = rpil+frameth*2+clearance;    // Overall length
+  widov = rpiw+frameth*2+clearance;    // Overall width
+  supth = frameth+rpim;                // Thickness of support frame
+  tablo = tabln+supth;                 // Screw tab length overall
+  tabwo = tabwd+supth;                 // Screw tab width overall
   difference()
   {
     union()
     {
-      frame(rpil,rpiw,totalht,frameth,rpim,boardht);
+      frame(rpil+clearance,rpiw+clearance,totalht,frameth,rpim,boardht);
       // Add mounting tabs
-      for (xo = [0,lenov-tablo])
+      for (xo = [0,1])
       {
-        for (yo = [0,widov-tabwo])
+        for (yo = [0,1])
         {
-        translate ([xo,yo,0])
-          tab(tablo, tabwo, tabth, supth, holedia);
+        translate ([xo*lenov,yo*widov,0])
+          tab(tablo, tabwo, tabth, (min(tablo,tabwo)-supth)/2, holedia, xo, yo);
         }
       }
       // Add retaining ridges
-      ridgeX(0, 12, frameth, boardht+rpit, 1.5);
-      ridgeX(lenov-12, lenov, frameth, boardht+rpit, 1.5);
-      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 0.5);
+      ridgeX(0, 12,                frameth,       boardht+rpit, 1.5);
+      ridgeX(lenov-12, lenov,      frameth,       boardht+rpit, 1.5);
+      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 1.5);
     }
-    // Cutout for power connector
-    cutout(0,supth,frameth+powerymin,frameth+powerymax,boardht,powerht);
+    // Cutout for power connector (extended to avoid silly stick-up post)
+    cutout(0,supth,frameth+powerymin,frameth+powerymax+10,boardht,powerht);
     // Cutout for SD card
     cutout(0,supth,frameth+cardymin,frameth+cardymax,boardht,cardht);
     // Cutout for HDMI
@@ -181,3 +183,5 @@ module rpimount()
 rpimount();
 
 //tab(10, 20, 2, 3, 4);
+
+//ridgeX(0,10,0,2,2);
