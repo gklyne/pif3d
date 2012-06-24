@@ -8,12 +8,12 @@
 //}
 
 
-w = 30;      // Width top of handrail
+w = 45;      // Width top of handrail
 d = 25;      // Depth of heandrail.
 h = 80;      // Height of main hanger
-a = 5;       // Angle between handrail top and side
+a = 16;      // Angle between handrail top and side
 t1 = 20;     // Thickness at top of hanger
-t2 = 12;     // Thickness at bottom of hanger
+t2 = 14;     // Thickness at bottom of hanger
 t3 = 5;      // Thickness of outer frame
 t4 = 3;      // Thickness of frame web
 r1 = 10;     // Outer radius of rope eye
