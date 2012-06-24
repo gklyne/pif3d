@@ -112,8 +112,19 @@ module cutoutholeY(x, miny, maxy, h, d)
 {
   clearance = 0.5;
   translate([x,miny-clearance,h])
-    rotate([90,0,0])    // (rotate from +Z to +Y axis)
-      cylinder(r=d/2+clearance,h=maxy-miny+clearance*2,$fn=16);
+    rotate([-90,0,0])    // (rotate from +Z to +Y axis)
+      # cylinder(r=d/2+clearance,h=maxy-miny+clearance*2,$fn=16);
+}
+
+// Board retaining ridge
+// min-x, max-x, y-pos of centre, height of centre, depth
+module ridgeX(xmin, xmax, y, h, d)
+{
+  d2 = d*sqrt(2);
+  translate([xmin,y,h])
+    rotate([45,0,0])
+      translate([0,-d2/2,-d2/4])
+        # cube(size=[xmax-xmin,d2,d2]);
 }
 
 frameth  = 2;     // Thickness of outer frame
@@ -146,22 +157,24 @@ module rpimount()
         }
       }
       // Add retaining ridges
-      // @@TBD
+      ridgeX(0, 12, frameth, boardht+rpit, 1.5);
+      ridgeX(lenov-12, lenov, frameth, boardht+rpit, 1.5);
+      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 0.5);
     }
     // Cutout for power connector
-    cutout(0,supth,powerymin,powerymax,boardht,powerht);
+    cutout(0,supth,frameth+powerymin,frameth+powerymax,boardht,powerht);
     // Cutout for SD card
-    cutout(0,supth,cardymin,cardymax,boardht,cardht);
+    cutout(0,supth,frameth+cardymin,frameth+cardymax,boardht,cardht);
     // Cutout for HDMI
-    cutout(hdmixmin,hdmixmax,0,supth,boardht,hdmiht);
+    cutout(frameth+hdmixmin,frameth+hdmixmax,0,supth,boardht,hdmiht);
     // Cutout for Ethernet
-    cutout(lenov-supth,lenov,netminy,netmaxy,boardht,netht);
+    cutout(lenov-supth,lenov,frameth+netminy,frameth+netmaxy,boardht,netht);
     // Cutout for USB
-    cutout(lenov-supth,lenov,usbminy,usbmaxy,boardht,usbht);
+    cutout(lenov-supth,lenov,frameth+usbminy,frameth+usbmaxy,boardht,usbht);
     // Cutout for audio
-    cutoutholeY(audiox,widov-supth,widov,audioh,audiod);
+    cutoutholeY(audiox,widov-supth,widov,boardht+audioh,audiod);
     // Cutout for video
-    cutoutholeY(videox,widov-supth,widov,videoh,videod);
+    cutoutholeY(videox,widov-supth,widov,boardht+videoh,videod);
   }
 }
 
