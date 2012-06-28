@@ -12,10 +12,10 @@ powerymax = 11.5; // Max-Y of micro-USP power connector (no clearance)
 powerht   = 4.2;  // Height (from base of board)
 cardymin  = 14.5; // Min-Y of SD card holder
 cardymax  = 44.5; // Max-Y ..
-cardht    = -4;   // Height (*below* base of board, with clerance)
+cardht    = -3.5; // Height (*below* base of board, with clearance)
 // y=0 edge
 hdmixmin = 37;    // Min-X of HDMI socket (no clearance)
-hdmixmax = 52;    // Max-X of HDMI socket (no clearance)
+hdmixmax = 51;    // Max-X of HDMI socket (no clearance)
 hdmiht   = 7.6;   // Height (from base of board)
 // x=max edge
 netminy  = 2;     // Min-Y of Network socket
@@ -130,7 +130,7 @@ module ridgeX(xmin, xmax, y, h, d)
 
 frameth  = 2;     // Thickness of outer frame
 boardht  = 7;     // Height to board
-totalht  = 12;    // Height overall
+totalht  = 15;    // Height overall
 tabln    = 10;    // Length of corner tab
 tabwd    = 10;    // Width of corner tab
 tabth    = 2;     // Thickness of corner tab
@@ -161,7 +161,7 @@ module rpimount()
       // Add retaining ridges
       ridgeX(0, 12,                frameth,       boardht+rpit, 1);
       ridgeX(lenov-12, lenov,      frameth,       boardht+rpit, 1);
-      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, .75);
+      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 1);
     }
     // Cutout for power connector (extended to avoid silly stick-up post)
     cutout(0,supth,frameth+powerymin,frameth+powerymax+10,boardht,powerht);
@@ -169,14 +169,14 @@ module rpimount()
     cutout(0,supth,frameth+cardymin,frameth+cardymax,boardht,cardht);
     // Cutout for HDMI
     cutout(frameth+hdmixmin,frameth+hdmixmax,0,supth,boardht,hdmiht);
-    // Cutout for Ethernet
-    cutout(lenov-supth,lenov,frameth+netminy,frameth+netmaxy,boardht,netht);
+    // Cutout for Ethernet (extebded to avoid silly sick=up post)
+    cutout(lenov-supth,lenov,frameth+netminy,frameth+netmaxy+10,boardht,netht);
     // Cutout for USB
     cutout(lenov-supth,lenov,frameth+usbminy,frameth+usbmaxy,boardht,usbht);
     // Cutout for audio
-    cutoutholeY(audiox,widov-supth,widov,boardht+audioh,audiod);
+    cutoutholeY(audiox+frameth,widov-supth,widov,boardht+audioh,audiod);
     // Cutout for video
-    cutoutholeY(videox,widov-supth,widov,boardht+videoh,videod);
+    cutoutholeY(videox+frameth,widov-supth,widov,boardht+videoh,videod);
   }
 }
 
