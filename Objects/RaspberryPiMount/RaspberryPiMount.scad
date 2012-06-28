@@ -3,7 +3,7 @@
 rpil = 85;        // RPi board length
 rpiw = 56;        // RPi board width
 rpit = 1.5;       // RPi board thinkness
-rpim = 1;         // RPi margin on PCB sides (except where HDMI port)
+rpim = 1.25;      // RPi margin on PCB sides (except where HDMI port)
 // For the following, corner with power connector is (0,0)
 // with length along X-axis, and width along Y-axis.
 // x=0 edge:
@@ -15,7 +15,7 @@ cardymax  = 44.5; // Max-Y ..
 cardht    = -3.5; // Height (*below* base of board, with clearance)
 // y=0 edge
 hdmixmin = 37;    // Min-X of HDMI socket (no clearance)
-hdmixmax = 51;    // Max-X of HDMI socket (no clearance)
+hdmixmax = 51.5;  // Max-X of HDMI socket (no clearance)
 hdmiht   = 7.6;   // Height (from base of board)
 // x=max edge
 netminy  = 2;     // Min-Y of Network socket
@@ -128,7 +128,7 @@ module ridgeX(xmin, xmax, y, h, d)
         # cube(size=[xmax-xmin,d2,d2]);
 }
 
-frameth  = 2;     // Thickness of outer frame
+frameth  = 2.5;   // Thickness of outer frame
 boardht  = 7;     // Height to board
 totalht  = 15;    // Height overall
 tabln    = 10;    // Length of corner tab
@@ -159,9 +159,9 @@ module rpimount()
         }
       }
       // Add retaining ridges
-      ridgeX(0, 12,                frameth,       boardht+rpit, 1);
-      ridgeX(lenov-12, lenov,      frameth,       boardht+rpit, 1);
-      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 1);
+      ridgeX(0, 12,                frameth,       boardht+rpit, 1.25);
+      ridgeX(lenov-12, lenov,      frameth,       boardht+rpit, 1.25);
+      ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 1.25);
     }
     // Cutout for power connector (extended to avoid silly stick-up post)
     cutout(0,supth,frameth+powerymin,frameth+powerymax+10,boardht,powerht);
