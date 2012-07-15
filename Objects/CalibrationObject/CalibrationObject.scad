@@ -3,7 +3,7 @@
 difference()
 {
   cube([100,100,2], center=false);
-  translate([2.5,2.5,-1]) cube([95, 95, 4], center=false);
+  translate([5,5,-1]) cube([90, 90, 4], center=false);
 };
 
 module step()
