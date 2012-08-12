@@ -1,0 +1,17 @@
+Early printing experiments with a newly built RepRap Mendel
+
+Plastic parts printed using a RapMan repstrap
+Mendel-parts Gen6 electronics
+Mendel-parts hot-end (V1)
+Wade extruder
+
+For my first prints, I focused on creating a set of spare parts for my Wade extruder drive, as that seemed to be the most highly stressed part of the RepRap assembly and may be the first to need replacing.  I'll aim to create a complete new set of parts which I may use to build a second RepRap, so I have the means to fix one if and when the other breaks.
+
+The "Tuning prints" images show a sequence of printed idler blocks of increasing print quality:  this was my test piece for initial tuning of the Skeinforge settings (see http://code.google.com/p/pif3d/wiki/Skeinforge_Gen6_Tuning).
+
+The "1st attempt" print shows my first attempt to print multiple parts for "production" use.  A close look shows that the drive gear is too distorted to be usable.  I think the problem was that towards the end of the print, the workpiece is still soft from the previous layer wen printing the next.
+
+For my second attempt, notice the strategically placed power supply (I use a PC ATX power supply for the RepRap, as I wanted enough power to run a heated bed in due course), with its fan exhaust directed over the print surface to provide some cooling.  This time, the print worked OK (not perfect, but quite usable IMO) as can be seen in the results images.
+
+(I printed the main extruder block separately before these tests, and added it the the arrangement to show a complete set of Wade extruder drive parts for the purposes of exposition.  The extruder drive main block has some curling, but I think it is still quite usable.)
+
