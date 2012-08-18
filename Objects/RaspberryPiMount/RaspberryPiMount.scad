@@ -1,6 +1,6 @@
 // Rasperry Pi mounting bracket
 
-rpil = 85;        // RPi board length
+rpil = 86;        // RPi board length +1
 rpiw = 56;        // RPi board width
 rpit = 1.5;       // RPi board thinkness
 rpim = 1.25;      // RPi margin on PCB sides (except where HDMI port)
