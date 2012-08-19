@@ -15,7 +15,7 @@ cardymax  = 44.5; // Max-Y ..
 cardht    = -3.5; // Height (*below* base of board, with clearance)
 // y=0 edge
 hdmixmin = 37;    // Min-X of HDMI socket (no clearance)
-hdmixmax = 51.5;  // Max-X of HDMI socket (no clearance)
+hdmixmax = 52;    // Max-X of HDMI socket (no clearance)
 hdmiht   = 7.6;   // Height (from base of board)
 // x=max edge
 netminy  = 2;     // Min-Y of Network socket
@@ -95,9 +95,10 @@ module tab(l,w,t,cornerrad,holedia,xo,yo)
 module cutout(minx, maxx, miny, maxy, baseh, h)
 {
   clearance = 0.5;
-  cutheight = abs(h)+20;;
+  cutheight = abs(h)+20;
   if ( h > 0 )
   {
+    echo("Cutout x=[",minx,",",maxx,"], y=[",miny,",",maxy,"]");
     translate([minx-clearance,miny-clearance,baseh])
       cube(size=[maxx-minx+2*clearance, maxy-miny+2*clearance, cutheight]);
   }
@@ -164,12 +165,12 @@ module rpimount()
       ridgeX(lenov/2-5, lenov/2+5, widov-frameth, boardht+rpit, 1.25);
     }
     // Cutout for power connector (extended to avoid silly stick-up post)
-    cutout(0,supth,frameth+powerymin,frameth+powerymax+10,boardht,powerht);
+    cutout(0,supth,frameth+powerymin-1.5,frameth+powerymax+10,boardht,powerht);
     // Cutout for SD card
     cutout(0,supth,frameth+cardymin,frameth+cardymax,boardht,cardht);
     // Cutout for HDMI
     cutout(frameth+hdmixmin,frameth+hdmixmax,0,supth,boardht,hdmiht);
-    // Cutout for Ethernet (extebded to avoid silly sick=up post)
+    // Cutout for Ethernet (extended to avoid silly sick=up post)
     cutout(lenov-supth,lenov,frameth+netminy,frameth+netmaxy+10,boardht,netht);
     // Cutout for USB
     cutout(lenov-supth,lenov,frameth+usbminy,frameth+usbmaxy,boardht,usbht);
